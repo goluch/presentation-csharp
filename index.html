@@ -7,7 +7,8 @@
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
 		<title>Prezentacja C#</title>
-        <!-- UŻYWAMY ŚCIEŻEK WZGLĘDNYCH (./) DLA WSZYSTKICH ZASOBÓW -->
+        
+        <!-- UŻYWAMY TRADYCYJNYCH ŚCIEŻEK WZGLĘDNYCH DO SKOMPILOWANYCH ASSETÓW -->
 		<link rel="stylesheet" href="./dist/reset.css" />
 		<link rel="stylesheet" href="./dist/reveal.css" />
 		<link rel="stylesheet" href="./dist/theme/black.css" /> 
@@ -22,14 +23,10 @@
 					<h3>Dogłębne poznawanie składni i mechanizmów</h3>
 				</section>
 
-				<!-- 2. SLAJD AGENDY (w HTML, bez Markdown) -->
+				<!-- 2. SLAJD AGENDY -->
 				<section>
 					<h2>Agenda</h2>
-					<ul style="list-style-type: none;">
-						<li>1. Wprowadzenie i Składnia</li>
-						<li>2. Typy Danych</li>
-						<!-- Dodaj resztę punktów agendy tutaj -->
-					</ul>
+					<p>Treść agendy w czystym HTML, bez Markdown.</p>
 				</section>
 
 				<!-- SEKCJA 1: Wprowadzenie i Składnia -->
@@ -40,27 +37,26 @@
 					<section>
 						<h3>1.1. Historia i cele projektowe C#</h3>
 						<ul>
-							<li class="fragment">Twórca: **Anders Hejlsberg** (znany z Delphi/Turbo Pascal).</li>
-							<li class="fragment">**Debiut:** Rok 2000, jako część platformy **.NET Framework**.</li>
+							<li>Twórca: **Anders Hejlsberg**.</li>
+							<li>**Debiut:** Rok 2000.</li>
 						</ul>
 					</section>
 				</section>
 			</div>
 		</div>
 
-        <!-- UŻYWAMY MODUŁÓW ES, CO DZIAŁA LOKALNIE, ALE Z NAPRAWIONYMI ŚCIEŻKAMI -->
-        <script type="module">
-            // Moduły ES, ścieżki WZGLĘDNE (./)
-            import Reveal from './dist/reveal.esm.js'; 
-            import RevealNotes from './plugin/notes/notes.esm.js';
-            import RevealMarkdown from './plugin/markdown/markdown.esm.js';
-            import RevealHighlight from './plugin/highlight/highlight.esm.js';
-
-            // Inicjalizacja Reveal.js
+        <!-- TRADYCYJNE ŁADOWANIE JS (ZAKŁADAMY, ŻE PLIKI PLUGINÓW SĄ SKOMPILOWANE W REPO) -->
+        <script src="./dist/reveal.js"></script>
+        <script src="./plugin/markdown/markdown.js"></script>
+        <script src="./plugin/highlight/highlight.js"></script>
+        <script src="./plugin/notes/notes.js"></script>
+        
+        <script>
+            // INICJALIZACJA: Wskazujemy na zmienne globalne
             Reveal.initialize({
                 hash: true,
-                plugins: [
-                    RevealMarkdown, 
+                plugins: [ 
+                    RevealMarkdown, // Zmienne globalne muszą istnieć
                     RevealHighlight, 
                     RevealNotes
                 ]
