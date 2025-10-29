@@ -1,48 +1,37 @@
-import { resolve } from 'path';
-import { ModuleFormat } from 'rollup';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 
-export const appendExtension = (format: ModuleFormat, name: String): string => {
-	if (format === 'es') {
-		return `${name}.mjs`;
-	} else {
-		return `${name}.js`;
-	}
-};
+// Zmienna musi odpowiadać Twojej nazwie repozytorium!
+const REPO_NAME = 'presentation-csharp'; 
 
 export default defineConfig({
-	base: '/presentation-csharp/', 
-	build: {
-		emptyOutDir: true,
-		lib: {
-			formats: ['es', 'umd'],
-			entry: resolve(__dirname, 'js/index.ts'),
-			name: 'Reveal',
-			fileName: (format, entryName) => {
-				return appendExtension(format, 'reveal');
-			},
-		},
-		rollupOptions: {
-			output: {
-				assetFileNames: 'reveal.[ext]',
-			},
-		},
-	},
-	resolve: {
-		alias: {
-			// Matches the exported paths in package.json
-			'reveal.js/plugin': '/plugin',
-			'reveal.js': '/js',
-			'reveal.css': '/css/reveal.scss',
-		},
-	},
-	plugins: [dts({ insertTypesEntry: true, rollupTypes: true })],
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
-	},
+    // Ustawia katalog wyjściowy na 'dist-demo'
+    build: {
+        outDir: 'dist-demo',
+        emptyOutDir: true,
+        // Upewniamy się, że to jest build aplikacji (nie biblioteki)
+        rollupOptions: {
+            input: 'index.html',
+        }
+    },
+    // Ustawia ścieżkę bazową dla zasobów (CSS, JS) wewnątrz zbudowanego index.html
+    base: `/${REPO_NAME}/`,
+    
+    // Używamy aliasów, aby Vite poprawnie znalazł pliki
+    resolve: {
+        alias: {
+            // Te aliasy z oryginalnego configu muszą zostać zachowane
+            'reveal.js/plugin': '/plugin',
+            'reveal.js': '/js',
+            // Wymuszamy, aby SCSS został załadowany poprawnie
+            'reveal.css': '/css/reveal.scss', 
+        },
+    },
+    // Konfiguracja dla SCSS
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler',
+            },
+        },
+    },
 });
