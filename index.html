@@ -19,8 +19,49 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section id="intro-lang">
+					<section data-menu-title="Wprowadzenie">
+						<h2>1. Wprowadzenie i Składnia</h2>
+					</section>
+					
+					<section>
+						<h3>1.1. Historia i cele projektowe C#</h3>
+						<ul>
+							<li class="fragment">Twórca: **Anders Hejlsberg** (znany z Delphi/Turbo Pascal).</li>
+							<li class="fragment">**Debiut:** Rok 2000, jako część platformy **.NET Framework**.</li>
+							<li class="fragment">**Cel:** Stworzenie nowoczesnego, **obiektowego** i bezpiecznego (typowo) języka. Miał łączyć efektywność C++ z produktywnością Javy.</li>
+							<li class="fragment">**Nazwa:** "C-Sharp" sugeruje ewolucję C++, jest podniesieniem o pół tonu nuty C (ang. sharp).</li>
+							<li class="fragment">Obecnie rozwijany jako **Open Source** (od .NET Core) i zgodny ze standardami ECMA/ISO.</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h3>1.2. Struktura programu (`namespace`, `using`, `Main`)</h3>
+						<ul>
+							<li>**`using System;`**: Importuje przestrzeń nazw, dając dostęp do gotowych klas i funkcji (np. `Console`).</li>
+							<li>**`namespace`**: Organizuje kod, zapobiegając kolizjom nazw. Każda aplikacja jest zbiorem przestrzeni nazw.</li>
+							<li>**`public class Program`**: Klasa będąca kontenerem dla metod.</li>
+							<li>**`public static void Main(string[] args)`**: **Punkt startowy** każdej aplikacji konsolowej.</li>
+						</ul>
+						<pre class="fragment">
+							<code class="hljs" data-trim data-noescape>
+				using System;
+
+				namespace MojaPrezentacja
+				{
+					public class Program
+					{
+						public static void Main(string[] args)
+						{
+							// Kod startowy programu
+							Console.WriteLine("Witaj w C#!"); 
+						}
+					}
+				}
+							</code>
+						</pre>
+					</section>
+				</section>
 			</div>
 		</div>
 
