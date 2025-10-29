@@ -1,0 +1,39 @@
+name: Deploy Presentation to GitHub Pages
+
+on:
+  push:
+    branches:
+      - feature/vite # Uruchom przy pushu do gałęzi feature/vite
+  workflow_dispatch: # Umożliwia ręczne uruchomienie z interfejsu Actions
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code 🛎️
+        uses: actions/checkout@v4
+      
+      # Ustawienie środowiska Node.js
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Używamy stabilnej wersji LTS
+
+      # Instalacja zależności
+      - name: Install dependencies 🔧
+        run: npm install
+
+      # Uruchomienie skryptu budowania (generowanie plików statycznych)
+      - name: Build Presentation (npm run build:pages) 🏗️
+        # Używamy nowo dodanego skryptu 'build:pages'
+        run: npm run build:pages
+
+      # Wdrożenie na GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Katalog wynikowy utworzony przez skrypt build:pages
+          publish_dir: ./dist-demo 
+          publish_branch: gh-pages
