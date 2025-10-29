@@ -12,6 +12,7 @@ export const appendExtension = (format: ModuleFormat, name: String): string => {
 };
 
 export default defineConfig({
+	base: '/presentation-csharp/', 
 	build: {
 		emptyOutDir: true,
 		lib: {
