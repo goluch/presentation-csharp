@@ -56,7 +56,9 @@
 		"build:styles": "vite build -c vite.config.styles.ts",
 		"build": "tsc && vite build && vite build -c vite.config.styles.ts && vite build -c plugin/highlight/vite.config.ts && vite build -c plugin/markdown/vite.config.ts && vite build -c plugin/math/vite.config.ts && vite build -c plugin/notes/vite.config.ts && vite build -c plugin/search/vite.config.ts && vite build -c plugin/zoom/vite.config.ts",
 		"package": "node zip.js",
-		"test": "node test.js"
+		"test": "node test.js",
+	    "build:pages": "vite build --base './' --outDir dist/demo && cp index.html dist/demo/index.html"
+    
 	},
 	"author": {
 		"name": "Hakim El Hattab",
