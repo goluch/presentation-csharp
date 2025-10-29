@@ -6,21 +6,34 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
-		<title>reveal.js</title>
-        <!-- NAPRAWA: Zmieniono ścieżki z problematycznych SCSS/modułów na bezwzględne, 
-             wskazujące na skompilowane pliki w katalogu 'dist' w repozytorium.
-             Użyto nazwy repozytorium jako prefiksu ścieżki: /presentation-csharp/... -->
-		<link rel="stylesheet" href="/presentation-csharp/dist/reset.css" />
-		<link rel="stylesheet" href="/presentation-csharp/dist/reveal.css" />
-		<link rel="stylesheet" href="/presentation-csharp/dist/theme/black.css" /> 
-		<!-- Theme used for syntax highlighted code (pluginy również ze ścieżką bezwzględną) -->
-		<link rel="stylesheet" href="/presentation-csharp/plugin/highlight/monokai.css" /> 
+		<title>Prezentacja C#</title>
+        <!-- UŻYWAMY ŚCIEŻEK WZGLĘDNYCH (./) DLA WSZYSTKICH ZASOBÓW -->
+		<link rel="stylesheet" href="./dist/reset.css" />
+		<link rel="stylesheet" href="./dist/reveal.css" />
+		<link rel="stylesheet" href="./dist/theme/black.css" /> 
+		<link rel="stylesheet" href="./plugin/highlight/monokai.css" /> 
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<!-- TREŚĆ PREZENTACJI ZNAJDUJE SIĘ TUTAJ -->
-				<section id="intro-lang">
+				<!-- 1. SLAJD TYTUŁOWY -->
+				<section>
+					<h1>Język C#</h1>
+					<h3>Dogłębne poznawanie składni i mechanizmów</h3>
+				</section>
+
+				<!-- 2. SLAJD AGENDY (w HTML, bez Markdown) -->
+				<section>
+					<h2>Agenda</h2>
+					<ul style="list-style-type: none;">
+						<li>1. Wprowadzenie i Składnia</li>
+						<li>2. Typy Danych</li>
+						<!-- Dodaj resztę punktów agendy tutaj -->
+					</ul>
+				</section>
+
+				<!-- SEKCJA 1: Wprowadzenie i Składnia -->
+				<section>
 					<section data-menu-title="Wprowadzenie">
 						<h2>1. Wprowadzenie i Składnia</h2>
 					</section>
@@ -29,44 +42,29 @@
 						<ul>
 							<li class="fragment">Twórca: **Anders Hejlsberg** (znany z Delphi/Turbo Pascal).</li>
 							<li class="fragment">**Debiut:** Rok 2000, jako część platformy **.NET Framework**.</li>
-							<li class="fragment">**Cel:** Stworzenie nowoczesnego, **obiektowego** i bezpiecznego (typowo) języka. Miał łączyć efektywność C++ z produktywnością Javy.</li>
-							<li class="fragment">**Nazwa:** "C-Sharp" sugeruje ewolucję C++, jest podniesieniem o pół tonu nuty C (ang. sharp). </li>
-							<li class="fragment">Obecnie rozwijany jako **Open Source** (od .NET Core) i zgodny ze standardami ECMA/ISO.</li>
 						</ul>
-					</section>
-					<section>
-						<h3>1.2. Struktura programu (`namespace`, `using`, `Main`)</h3>
-						<ul>
-							<li>**`using System;`**: Importuje przestrzeń nazw, dając dostęp do gotowych klas i funkcji (np. `Console`).</li>
-							<li>**`namespace`**: Organizuje kod, zapobiegając kolizjom nazw. Każda aplikacja jest zbiorem przestrzeni nazw.</li>
-							<li>**`public class Program`**: Klasa będąca kontenerem dla metod.</li>
-							<li>**`public static void Main(string[] args)`**: **Punkt startowy** każdej aplikacji konsolowej.</li>
-						</ul>
-						<pre class="fragment">
-							<code class="hljs" data-trim data-noescape>				using System;
-				namespace MojaPrezentacja				{					public class Program					{						public static void Main(string[] args)						{							// Kod startowy programu							Console.WriteLine("Witaj w C#!"); 						}					}				}							</code>
-						</pre>
 					</section>
 				</section>
 			</div>
 		</div>
 
-        <!-- NAPRAWA: Usunięto importy modułów JS (type="module") i zastąpiono je statycznym ładowaniem JS, 
-             używając bezwzględnych ścieżek Pages. -->
-		<script src="/presentation-csharp/dist/reveal.js"></script>
-        
-        <!-- Wtyczki również ładowane są statycznie z odpowiednich katalogów: -->
-		<script src="/presentation-csharp/plugin/notes/notes.js"></script>
-		<script src="/presentation-csharp/plugin/markdown/markdown.js"></script>
-		<script src="/presentation-csharp/plugin/highlight/highlight.js"></script>
-        
-		<script>
-            // Inicjalizacja Reveal.js, używająca globalnych zmiennych (które powinny być dostępne po załadowaniu skryptów):
-			Reveal.initialize({
-				hash: true,
-				// Tutaj używamy globalnych zmiennych RevealMarkdown/RevealHighlight/RevealNotes
-				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
-			});
+        <!-- UŻYWAMY MODUŁÓW ES, CO DZIAŁA LOKALNIE, ALE Z NAPRAWIONYMI ŚCIEŻKAMI -->
+        <script type="module">
+            // Moduły ES, ścieżki WZGLĘDNE (./)
+            import Reveal from './dist/reveal.esm.js'; 
+            import RevealNotes from './plugin/notes/notes.esm.js';
+            import RevealMarkdown from './plugin/markdown/markdown.esm.js';
+            import RevealHighlight from './plugin/highlight/highlight.esm.js';
+
+            // Inicjalizacja Reveal.js
+            Reveal.initialize({
+                hash: true,
+                plugins: [
+                    RevealMarkdown, 
+                    RevealHighlight, 
+                    RevealNotes
+                ]
+            });
 		</script>
 	</body>
 </html>
